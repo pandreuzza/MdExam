@@ -1,19 +1,16 @@
-
--- local logging = require 'logging'
-
 -- Div block: surrounds block with "begin" and "end"
 function Div(el)
 
-  if el.classes[1] == "bes" then
+  if el.classes[1] == "special" then
     return{
-    pandoc.RawBlock("latex", "\\ifbool{besVersion}{"),
+    pandoc.RawBlock("latex", "\\ifbool{specialVersion}{"),
     el,
     pandoc.RawBlock("latex", "}{}")
     }
   end
-  if el.classes[1] == "nbes" then
+  if el.classes[1] == "nspecial" then
     return{
-    pandoc.RawBlock("latex", "\\ifbool{besVersion}{}{"),
+    pandoc.RawBlock("latex", "\\ifbool{specialVersion}{}{"),
     el,
     pandoc.RawBlock("latex", "}")
     }
@@ -126,7 +123,7 @@ function Para(para)
         if not next(el.citations[1].suffix) then
           myBlock = pandoc.RawInline('latex', '\\makeemptybox{5cm}')
         else
-          myBlock = pandoc.RawInline('latex', '\\makeemptybox{' .. el.citations[1].suffix[1].text .. '}')
+          myBlock = pandoc.RawInline('latex', '\\makeemptybox{' .. el.citations[1].suffix[1].text .. 'cm}')
         end
         return (myBlock)
       end
