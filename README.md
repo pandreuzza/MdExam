@@ -213,10 +213,27 @@ This markdown
 :::
 ```
 
-Whith `special_version` set to *false* the result is:
+With `special_version` set to *false* the result is:
 
 ![FullVerion img](./Docs/Images/FullExam.png)
 
-Whith `special_version` set to *true* the result is:
+With `special_version` set to *true* the result is:
 
 ![SpecialVersion img](./Docs/Images/SpecialExam.png)
+
+## Command line
+
+To obtain the output file from command line invoke:
+
+```
+pandoc --pdf-engine lualatex --template ExamLuaTemplate.tex --lua-filter ExamLuaFilter.lua --output Output.pdf InputFile.md
+
+```
+
+where `InputFile.md` is the markdown source file and `Output.pdf` is the output file. If you change the file extension in `tex`, Pandoc will output a LaTeX file.
+
+At compile time, you can override the variables specified in the markdown file preamble, so, for example, you don't need ti edit the sourde firl to produce both the 'special version' and the 'normal version'. To do that specify in the command line the option `--metadata` followed by the variable name you want to set, the equal sign and the value.
+
+```
+--metadata special_version=true
+```
