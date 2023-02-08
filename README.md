@@ -129,3 +129,94 @@ The `ExamLuaFilter` use `@eb` for  this command. In the square brakets you can s
 Result:
 ![EmptyBox img](./Docs/Images/EmptyBox.png)
 
+## YAML preamble
+
+In the markdown source document you can specify a preamble that configure the output document.
+To make all wirks correctly, you need a specific latex template file. The template provided is for italian language speaking, but can be used as starting point.
+
+In the preabble thare are the following variables:
+
+- `title`: Specify the title of the document, is printed at very begining of the pdf output
+- `printPoints`: Enable printing the points for each question
+- `pointsTable.print`: Enable printing of the points table at the end of document
+- `pointsTable.space`: Define the vertcal space between the last question and the points table
+- `answer`: Print the exam with the answer, if provided.
+- `special_version`: Print the special version of the exam. The special version can be a simplified version, starting from the same source file
+- `spacial_fontSize`: The special verion can have a bigger font size, to help students. Thie field is optional.
+```
+---
+title: "Example Exam sheet"
+printPoints: true       # print points in round brakets for each question
+pointsTable:
+    print: true         # Print the table with points at the end of the exam
+    space: 1cm          # vertical space between the last question and the points table
+answer: false           # set to true to show answers
+special_version: false
+spacial_fontSize: 17pt  # special version font size (8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, and 20pt)
+---
+```
+
+## Special version
+
+The same markdown source file can produce two different pdf. The text in `:::special` block will be printed only in the special version exam. The text in `:::nspecial` block will be printed only if `special_version` is set to false.
+
+In the special version exam you can specify a bigger font size via the `spacial_fontSize` variable.
+
+Example:
+
+This markdown
+
+```
+@q [10] This is the question with points.
+
+:::parts
+@p First part
+
+@p Second part
+
+:::nspecial
+@p Third part
+
+@p Fourth part
+
+@p Fifth part
+:::
+
+@p so on...
+:::
+
+:::nspecial
+@q [10] The name of the seven little Whitesnow's friends:
+
+@hf [7]
+:::
+
+:::special
+@q [10] The name of the large, green-skinned, physically intimidating ogre with a Scottish accent.
+
+@hf [1]
+:::
+
+@q[5] What color is Napoleon's white horse?
+
+*checkboxes*
+
+:::cb
+@c Yellow
+@cc White
+
+:::nspecial
+@c Black
+@c Brown
+:::
+
+:::
+```
+
+Whith `special_version` set to *false* the result is:
+
+![FullVerion img](./Docs/Images/FullExam.png)
+
+Whith `special_version` set to *true* the result is:
+
+![SpecialVersion img](./Docs/Images/SpecialExam.png)

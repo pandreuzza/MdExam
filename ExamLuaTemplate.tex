@@ -1,0 +1,80 @@
+\documentclass[a4paper$if(answer)$, answers$endif$]{exam}
+$if(special_version)$
+$if(special_fontSize)$ 
+\usepackage[$special_fontSize$]{extsizes}
+$else$
+\usepackage[14pt]{extsizes}
+$endif$
+$endif$
+
+\usepackage[left=1.5cm, right=2.0cm, top=1.5cm, bottom=1.5cm]{geometry}
+\usepackage[italian]{babel}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{etoolbox}
+
+\newbool{specialVersion}
+$if(special_version)$
+\booltrue{specialVersion}
+$endif$
+
+\addpoints
+$if(printPoints)$
+\pointsinrightmargin 			% print points for each question %
+
+$else$
+\nopointsinmargin
+\pointformat{}
+$endif$
+
+\begin{document}
+
+\sffamily
+
+Cognome:\dotfill  Nome:\dotfill  Data:\dotfill  Classe:\dotfill
+
+\begin{minipage}[c]{\textwidth}%
+    \vspace{0.2cm}
+    \begin{center}
+        \underline{{\LARGE $title$}}
+    \end{center}
+
+\end{minipage}%
+
+%Customization for italian language %
+\pointpoints{punto}{punti}	    % in italian %
+\marginpointname{pt}	        % in italian %
+\chqword{Domanda}
+
+% Per la tabella finale orizontale%
+\hqword{Domanda:}
+\hpgword{Pag.:}
+\hpword{Punti:}
+\hsword{Punteggio:}
+\htword{Totale} 
+
+% Per la tabella finale verticale %
+\vqword{Domanda}
+\vpgword{Pag}
+\vpword{Punti}
+\vsword{Punteggio}
+\vtword{Totale:} 
+
+\footskip=0.5cm
+\footrule
+\footer{}{Pag. \thepage\ di \numpages} {\textit{\iflastpage{Fine del compito}{segue \dots}}}
+
+\begin{questions}
+    $body$
+\end{questions}
+
+$if(pointsTable.print)$
+$if(pointsTable.space)$ 
+\vspace{$pointsTable.space$}
+$endif$
+\begin{center}
+    \gradetable[h][questions]
+\end{center}
+$endif$
+
+\end{document}
