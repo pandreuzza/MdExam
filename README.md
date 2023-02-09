@@ -132,9 +132,9 @@ Result:
 ## YAML preamble
 
 In the markdown source document you can specify a preamble that configure the output document.
-To make all wirks correctly, you need a specific latex template file. The template provided is for italian language speaking, but can be used as starting point.
+To make all works correctly, you need a specific latex template file. The template provided is for italian language speaking, but can be used as starting point.
 
-In the preabble thare are the following variables:
+In the preamble thare are the following variables:
 
 - `title`: Specify the title of the document, is printed at very begining of the pdf output
 - `printPoints`: Enable printing the points for each question
@@ -232,7 +232,7 @@ pandoc --pdf-engine lualatex --template ExamLuaTemplate.tex --lua-filter ExamLua
 
 where `InputFile.md` is the markdown source file and `Output.pdf` is the output file. If you change the file extension in `tex`, Pandoc will output a LaTeX file.
 
-At compile time, you can override the variables specified in the markdown file preamble, so, for example, you don't need ti edit the sourde firl to produce both the 'special version' and the 'normal version'. To do that specify in the command line the option `--metadata` followed by the variable name you want to set, the equal sign and the value.
+At compile time, you can override the variables specified in the markdown file preamble, so, for example, you don't need to edit the source file to produce both the 'special version' and the 'normal version'. To do that specify in the command line the option `--metadata` followed by the variable name you want to set, the equal sign and the value.
 
 ```
 --metadata special_version=true
